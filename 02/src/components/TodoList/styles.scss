@@ -1,0 +1,10 @@
+#todo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  input,
+  button {
+    width: 200px;
+  }
+}
