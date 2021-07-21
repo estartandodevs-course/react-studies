@@ -12,9 +12,8 @@
 
 <p>Pelas minhas pesquisas e por uma leve quantidade de dedução,o <b>useState</b>, é o primeiro hook que geralmente é mostrado quando React é ensinado ou falado,  na documentação oficial do React o exemplo que nós é apresentado é em forma de contador, escrito em código ficaria mais ou menos assim:</p>
 
-```
-
-import React, { useState } from 'react;
+```js
+import React, { useState } from 'react';
 
 function Example() {
     const [count, setCount] = useState(0)
@@ -28,19 +27,16 @@ function Example() {
         </div>
     );
 }
-
 ```
 
 <p>Antes de eu dar minha explicação sobre como consegui entender melhor o que o useState faz, vou postar a forma feito em Javascript puro pra mostrar exatamente o que o count é e o que o setCount são:</p>
 
-```
-
+```js
 let count = 0;
 
 const setCount = (value) => {
     count = value
 }
-
 ```
 
 <p>O useState tem dois valores, o primeiro é uma <b>variável</b> e o segundo é uma <b>função</b>,e o trabalho dessa função é basicamente atualizar a variável!
@@ -62,7 +58,7 @@ Exemplificando a variável agora que esse exemplo está claro:
 - <p>Ainda sobre a ideia de ser um array, a desestruturação do mesmo é opcional e facilita muito a leitura, mas poderia ser usado dessa forma:</p>
 
 
-```
+```js
  const arrayState = useState(0);
  const count = arrayState[0]; 
  const setCount = arrayState[1];
@@ -70,7 +66,7 @@ Exemplificando a variável agora que esse exemplo está claro:
 
 <p>Um ultimo exemplo usando dois useStates para exemplificar:</p>
 
-```
+```js
 function App () {
     const [count, setCount] = useState (0)
     const [theme, setTheme] = useState ("")
@@ -94,7 +90,6 @@ function App () {
         </>
     )
 }
-
 ```
 
 <p>No código acima, temos dois useState, um para gerenciar a variável <b>count</b> inicialmente declarado como <b>0</b>, e um para gerenciar a variável <b>theme</b>, inicialmente declarado como " " (uma string vazia), e temos dois botões no fim do código onde, cada um deles tem uma função diferente atribuída, ao se clicar no botão de <b>-</b> a variável <b>count</b> sera subtraída em 1 e a variável <b>theme</b> vai renderizar <b>green</b> na tela, ao clicar no botão de <b>+</b> a variável <b>count</b> sera somada em 1 e a variável <b>theme</b> ira renderizar <b>blue</b>!</p>
@@ -111,7 +106,7 @@ function App () {
 
 <p>Um jeito simples de se entender o useEffect de inicio é, pensar em um bloco de código que você deseja executar toda vez que algum componente for renderizado, isso ficou bem confuso de inicio mas o exemplo abaixo me fez entender melhor:</p>
 
-```
+```js
 function App () {
     const [resourceType, setResourceType] = useState ('')
 
