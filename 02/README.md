@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# Componentização e props
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Em React umas das partes mais fundamentais são os conceitos de componentização e props, os componentes são um conjunto de código que podem ser reutilizados em qualquer parte do seu projeto. Já as props ou propriedades, pode se dizer que seria os atributos, e essas propriedades podem ser passada de componentes para componentes.
 
-## Available Scripts
+# Exemplo de um componente
 
-In the project directory, you can run:
+## Como criar um componente?
 
-### `yarn start`
+Geralmente utilizamos a pasta components dentro da src do nosso projeto, lá guardamos todos os nossos componentes.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```js
+|src
+| |-components
+|   | - Button
+|       | index.js
+|       | styles.css
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Dentro da pasta components criamos a pasta `Button`, e dentro dela temos um `index.js` e um `styles.css`, no nosso index é onde vai ficar o nosso código do componente `Button`, e no styles como já sabemos, é a estilização desse botão.
 
-### `yarn test`
+```js
+import "./styles.scss";
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+const Button = () => {
+  return (
+    <button id="button">
+      Click
+    </button>
+  );
+};
 
-### `yarn build`
+export { Button };
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Aqui temos o código do componente botão, ele é criado atráves de uma função e retornamos dessa função um JSX `<button>Click</button>`,
+nela temos apenas um id e além disso usamos o export para podermos utilizar o componente em outros locais, para estilizarmos na página que quisermos.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Utilizando esse componente
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```js
+import React, { useState } from "react";
+import { Button } from "../Button";
 
-### `yarn eject`
+  return (
+      <Button seClicarDisparaMensagem={() => console.log('O botão foi clicado')}/>
+  );
+}
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+export { Counter };
+```
+Aqui já temos um componente dentro de outro componente, e isso é possivel, para usar o `Button` nessa página, nós primeiros importamos o Button no `import { Button } from "../Button';`, que é onde esta localizado a pasta do nosso componente Button, e logo em seguida chamamos ele com o <Button /> e passamos uma propriedade que iremos falar logo a baixo.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Props
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+As propriedades são passadas de componentes para componentes, e para utilizarmos ela fazemos da seguinte maneira:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```js
+import "./styles.scss";
 
-## Learn More
+const Button = (props) => {
+  return (
+    <button id="button" onClick={props.seClicarDisparaMensagem}>
+      Click
+    </button>
+  );
+};
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+export { Button };
+``` 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Nós passamos `props` como propriedade da função Button que é um objeto, e nesse caso queremos executar uma função de click, então chamamos o `onClick={}` e passamos a nossa `props` dentro do onClick, que no caso é a `seClicarDisparaMensagem`, e assim que clicarmos ira dispara o evento de click, que irá olhar essa propriedade e executar a função que da o `console.log()`.
