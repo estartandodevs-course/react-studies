@@ -69,3 +69,7 @@ export { Button };
 ``` 
 
 Nós passamos `props` como propriedade da função Button que é um objeto, e nesse caso queremos executar uma função de click, então chamamos o `onClick={}` e passamos a nossa `props` dentro do onClick, que no caso é a `seClicarDisparaMensagem`, e assim que clicarmos ira dispara o evento de click, que irá olhar essa propriedade e executar a função que da o `console.log()`.
+
+E assim foi a nossa aula de componentização e props e finalizamos a nossa segunda aula de React do [Estartando Devs](https://github.com/estartando-devs).
+
+[<- Voltar para a página inicial](https://github.com/estartando-devs/react-studies)
